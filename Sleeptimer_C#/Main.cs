@@ -16,6 +16,20 @@ namespace Sleeptimer_C_
         public Main()
         {
             InitializeComponent();
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(sleep_button, "Cancels any active shutdown and schedules a new shutdown");
+            toolTip.SetToolTip(abort_button, "Cancel any active shutdown countdown");
+        }
+
+        private void RunShutdownCommand(string args)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "shutdown",
+                Arguments = args,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            });
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -55,26 +69,24 @@ namespace Sleeptimer_C_
 
         private void sleep_button_Click(object sender, EventArgs e)
         {
-            decimal sleep_delay = (hour_updown.Value * 3600) + (minute_updown.Value * 60) + second_updown.Value;
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = "shutdown";
-            psi.Arguments = $"/f /s /t {sleep_delay}";
-            psi.UseShellExecute = false;
-            psi.CreateNoWindow = true;
-
-            Process.Start(psi);
-            MessageBox.Show($"Your computer will be shut down in {hour_updown.Value} Hours {minute_updown.Value} Minutes and {second_updown.Value} Seconds!");
+            int delay = (int)((hour_updown.Value * 3600) + (minute_updown.Value * 60) + second_updown.Value);
+            RunShutdownCommand($"/f /s /t {delay}");
+            MessageBox.Show(
+                $"If a shutdown was active, it has been aborted.\nYour computer will shut down in {hour_updown.Value}h {minute_updown.Value}m {second_updown.Value}s.",
+                "Shutdown Scheduled",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void abort_button_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = "shutdown";
-            psi.Arguments = "/a";
-            psi.UseShellExecute = false;
-            psi.CreateNoWindow = true;
-            Process.Start(psi);
-            MessageBox.Show("Sleeptimer has been aborted!");
+            RunShutdownCommand("/a");
+            MessageBox.Show(
+                    "If a shutdown was active, it has been aborted.",
+                    "Shutdown",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            this.Close();
         }
     }
 }

@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sleeptimer_C#.exe" size="21440">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Sleeptimer_C#.exe" size="21952">
       <assemblyIdentity name="Sleeptimer_C#" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>O1MRLzUXc6eftrRh9haO3BCVPDEX7+qvkfnGxCgeGBA=</dsig:DigestValue>
+        <dsig:DigestValue>giIJaJZD7i5o0/WcY2N0jvdAnu6OJf7YqeIeTW2QV8c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
