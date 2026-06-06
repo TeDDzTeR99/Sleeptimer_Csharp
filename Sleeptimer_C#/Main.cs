@@ -76,6 +76,7 @@ namespace Sleeptimer_C_
                 "Shutdown Scheduled",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+            Application.Exit();
         }
 
         private void abort_button_Click(object sender, EventArgs e)
@@ -86,7 +87,6 @@ namespace Sleeptimer_C_
                     "Shutdown",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-            this.Close();
         }
     }
 }
