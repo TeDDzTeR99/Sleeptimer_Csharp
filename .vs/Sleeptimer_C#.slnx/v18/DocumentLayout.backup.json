@@ -1,25 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\",
+  "WorkspaceRootPath": "C:\\PROJECTS\\Sleeptimer_Csharp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|z:\\projects\\sleeptimer_c#\\sleeptimer_c#\\sleeptimer_c#\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|c:\\projects\\sleeptimer_csharp\\sleeptimer_c#\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|solutionrelative:sleeptimer_c#\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\sleeptimer_c#\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|C:\\PROJECTS\\Sleeptimer_Csharp\\sleeptimer_c#\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|solutionrelative:sleeptimer_c#\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\sleeptimer_c#\\main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|C:\\PROJECTS\\Sleeptimer_Csharp\\sleeptimer_c#\\main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|solutionrelative:sleeptimer_c#\\main.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\sleeptimer_c#\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|C:\\PROJECTS\\Sleeptimer_Csharp\\sleeptimer_c#\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|solutionrelative:sleeptimer_c#\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\sleeptimer_c#\\properties\\resources.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|C:\\PROJECTS\\Sleeptimer_Csharp\\sleeptimer_c#\\properties\\resources.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{835061B7-D730-4AB5-9E40-695C602301E0}|Sleeptimer_C#\\Sleeptimer_C#.csproj|solutionrelative:sleeptimer_c#\\properties\\resources.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -44,50 +44,47 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Main.Designer.cs",
-              "DocumentMoniker": "Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\Sleeptimer_C#\\Main.Designer.cs",
+              "DocumentMoniker": "C:\\PROJECTS\\Sleeptimer_Csharp\\Sleeptimer_C#\\Main.Designer.cs",
               "RelativeDocumentMoniker": "Sleeptimer_C#\\Main.Designer.cs",
-              "ToolTip": "Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\Sleeptimer_C#\\Main.Designer.cs",
+              "ToolTip": "C:\\PROJECTS\\Sleeptimer_Csharp\\Sleeptimer_C#\\Main.Designer.cs",
               "RelativeToolTip": "Sleeptimer_C#\\Main.Designer.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAqwAIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T19:47:45.215Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-28T19:47:45.215Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "Program.cs",
-              "DocumentMoniker": "Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\Sleeptimer_C#\\Program.cs",
+              "DocumentMoniker": "C:\\PROJECTS\\Sleeptimer_Csharp\\Sleeptimer_C#\\Program.cs",
               "RelativeDocumentMoniker": "Sleeptimer_C#\\Program.cs",
-              "ToolTip": "Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\Sleeptimer_C#\\Program.cs",
+              "ToolTip": "C:\\PROJECTS\\Sleeptimer_Csharp\\Sleeptimer_C#\\Program.cs",
               "RelativeToolTip": "Sleeptimer_C#\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T19:48:14.623Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-28T19:48:14.623Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Resources.Designer.cs",
-              "DocumentMoniker": "Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\Sleeptimer_C#\\Properties\\Resources.Designer.cs",
+              "DocumentMoniker": "C:\\PROJECTS\\Sleeptimer_Csharp\\Sleeptimer_C#\\Properties\\Resources.Designer.cs",
               "RelativeDocumentMoniker": "Sleeptimer_C#\\Properties\\Resources.Designer.cs",
-              "ToolTip": "Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\Sleeptimer_C#\\Properties\\Resources.Designer.cs",
+              "ToolTip": "C:\\PROJECTS\\Sleeptimer_Csharp\\Sleeptimer_C#\\Properties\\Resources.Designer.cs",
               "RelativeToolTip": "Sleeptimer_C#\\Properties\\Resources.Designer.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T08:51:14.439Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-27T08:51:14.439Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Main.cs",
-              "DocumentMoniker": "Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\Sleeptimer_C#\\Main.cs",
+              "DocumentMoniker": "C:\\PROJECTS\\Sleeptimer_Csharp\\Sleeptimer_C#\\Main.cs",
               "RelativeDocumentMoniker": "Sleeptimer_C#\\Main.cs",
-              "ToolTip": "Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\Sleeptimer_C#\\Main.cs",
+              "ToolTip": "C:\\PROJECTS\\Sleeptimer_Csharp\\Sleeptimer_C#\\Main.cs",
               "RelativeToolTip": "Sleeptimer_C#\\Main.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAqwFgAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAswJ0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-27T07:38:05.188Z",
               "EditorCaption": ""
@@ -96,13 +93,11 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Main.cs [Design]",
-              "DocumentMoniker": "Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\Sleeptimer_C#\\Main.cs",
+              "DocumentMoniker": "C:\\PROJECTS\\Sleeptimer_Csharp\\Sleeptimer_C#\\Main.cs",
               "RelativeDocumentMoniker": "Sleeptimer_C#\\Main.cs",
               "ToolTip": "Z:\\Projects\\Sleeptimer_C#\\Sleeptimer_C#\\Sleeptimer_C#\\Main.cs [Design]",
-              "RelativeToolTip": "Sleeptimer_C#\\Main.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-27T07:35:30.633Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-01-27T07:35:30.633Z"
             }
           ]
         },

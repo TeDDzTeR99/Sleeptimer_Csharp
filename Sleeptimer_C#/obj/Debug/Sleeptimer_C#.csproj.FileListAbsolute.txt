@@ -12,3 +12,17 @@ Z:\Projects\Sleeptimer_C#\Sleeptimer_C#\Sleeptimer_C#\bin\Debug\Sleeptimer_C#.ex
 Z:\Projects\Sleeptimer_C#\Sleeptimer_C#\Sleeptimer_C#\bin\Debug\Sleeptimer_C#.application
 Z:\Projects\Sleeptimer_C#\Sleeptimer_C#\Sleeptimer_C#\obj\Debug\Sleeptimer_C#.exe.manifest
 Z:\Projects\Sleeptimer_C#\Sleeptimer_C#\Sleeptimer_C#\obj\Debug\Sleeptimer_C#.application
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\bin\Debug\Sleeptimer_C#.exe.config
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\bin\Debug\Sleeptimer_C#.exe.manifest
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\bin\Debug\Sleeptimer_C#.application
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\bin\Debug\Sleeptimer_C#.exe
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\bin\Debug\Sleeptimer_C#.pdb
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\obj\Debug\Sleeptimer_C#.csproj.AssemblyReference.cache
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\obj\Debug\Sleeptimer_C_.Main.resources
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\obj\Debug\Sleeptimer_C_.Properties.Resources.resources
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\obj\Debug\Sleeptimer_C#.csproj.GenerateResource.cache
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\obj\Debug\Sleeptimer_C#.csproj.CoreCompileInputs.cache
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\obj\Debug\Sleeptimer_C#.exe.manifest
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\obj\Debug\Sleeptimer_C#.application
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\obj\Debug\Sleeptimer_C#.exe
+C:\PROJECTS\Sleeptimer_Csharp\Sleeptimer_C#\obj\Debug\Sleeptimer_C#.pdb
