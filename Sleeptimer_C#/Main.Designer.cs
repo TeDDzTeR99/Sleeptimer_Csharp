@@ -62,15 +62,24 @@
             // 
             // hour_updown
             // 
+            this.hour_updown.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
             this.hour_updown.Location = new System.Drawing.Point(112, 10);
             this.hour_updown.Name = "hour_updown";
             this.hour_updown.ReadOnly = true;
             this.hour_updown.Size = new System.Drawing.Size(59, 38);
             this.hour_updown.TabIndex = 4;
-            this.hour_updown.ValueChanged += new System.EventHandler(this.hour_updown_ValueChanged);
             // 
             // minute_updown
             // 
+            this.minute_updown.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
             this.minute_updown.Location = new System.Drawing.Point(309, 10);
             this.minute_updown.Name = "minute_updown";
             this.minute_updown.ReadOnly = true;
@@ -89,6 +98,11 @@
             // 
             // second_updown
             // 
+            this.second_updown.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
             this.second_updown.Location = new System.Drawing.Point(506, 12);
             this.second_updown.Name = "second_updown";
             this.second_updown.ReadOnly = true;
@@ -135,7 +149,6 @@
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "Main";
             this.Text = "Sleeptimer";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.hour_updown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minute_updown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.second_updown)).EndInit();

@@ -1,119 +1,146 @@
-﻿using System;
-using System.Collections.Generic;
+﻿﻿using System;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Sleeptimer_C_
 {
     public partial class Main : Form
     {
-        private Timer countdownTimer;
-        private int totalSecondsLeft = 0;
+        // Seconds Windows waits (showing its own shutdown notice) before shutting down.
+        private const int ShutdownGraceSeconds = 30;
 
-        // 1. Storage variables to remember the original time input
-        private decimal originalHours = 0;
-        private decimal originalMinutes = 0;
-        private decimal originalSeconds = 0;
+        private readonly Timer countdownTimer;
+
+        // Wall-clock moment the countdown ends; compared on every tick so the
+        // countdown can't drift or stall when ticks are late or the PC sleeps.
+        private DateTime shutdownAtUtc;
+
+        // Time the user entered, restored when the countdown is aborted.
+        private int originalTotalSeconds;
+
+        // True after the countdown ended and Windows has a shutdown scheduled.
+        private bool windowsShutdownPending;
 
         public Main()
         {
             InitializeComponent();
-            ToolTip toolTip = new ToolTip();
+
+            if (components == null)
+                components = new Container();
+
+            ToolTip toolTip = new ToolTip(components);
             toolTip.SetToolTip(sleep_button, "Starts the local countdown to shut down this PC");
             toolTip.SetToolTip(abort_button, "Cancel the active countdown and reset the timer");
 
-            countdownTimer = new Timer();
-            countdownTimer.Interval = 1000;
+            countdownTimer = new Timer(components);
+            countdownTimer.Interval = 250;
             countdownTimer.Tick += CountdownTimer_Tick;
+
+            FormClosing += Main_FormClosing;
+            abort_button.Enabled = false;
         }
 
-        private void RunShutdownCommand(string args)
+        private bool RunShutdownCommand(string args)
         {
-            Process.Start(new ProcessStartInfo
+            try
             {
-                FileName = "shutdown",
-                Arguments = args,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            });
+                using (Process process = Process.Start(new ProcessStartInfo
+                {
+                    FileName = "shutdown",
+                    Arguments = args,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                }))
+                {
+                    if (process == null || !process.WaitForExit(5000))
+                        return false;
+                    return process.ExitCode == 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not run the shutdown command:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         private void CountdownTimer_Tick(object sender, EventArgs e)
         {
-            if (totalSecondsLeft > 0)
+            TimeSpan remaining = shutdownAtUtc - DateTime.UtcNow;
+
+            if (remaining > TimeSpan.Zero)
             {
-                totalSecondsLeft--;
+                ShowTime((int)Math.Ceiling(remaining.TotalSeconds));
+                return;
+            }
 
-                int hours = totalSecondsLeft / 3600;
-                int minutes = (totalSecondsLeft % 3600) / 60;
-                int seconds = totalSecondsLeft % 60;
+            countdownTimer.Stop();
+            ShowTime(0);
 
-                hour_updown.Value = hours;
-                minute_updown.Value = minutes;
-                second_updown.Value = seconds;
+            string message = "Sleeptimer: this PC will shut down in " + ShutdownGraceSeconds + " seconds.";
+            if (RunShutdownCommand("/s /t " + ShutdownGraceSeconds + " /c \"" + message + "\""))
+            {
+                windowsShutdownPending = true;
             }
             else
             {
-                countdownTimer.Stop();
-                RunShutdownCommand("/f /s /t 0");
-                Application.Exit();
+                MessageBox.Show("The shutdown could not be started.", "Shutdown Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowTime(originalTotalSeconds);
+                ToggleInputs(true);
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void ShowTime(int totalSeconds)
         {
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void hour_updown_ValueChanged(object sender, EventArgs e)
-        {
-            if (hour_updown.Value < 0) hour_updown.Value = 0;
-            if (hour_updown.Value > 24) hour_updown.Value = 24;
+            TimeSpan time = TimeSpan.FromSeconds(totalSeconds);
+            hour_updown.Value = (int)time.TotalHours;
+            minute_updown.Value = time.Minutes;
+            second_updown.Value = time.Seconds;
         }
 
         private void minute_updown_ValueChanged(object sender, EventArgs e)
         {
-            if (minute_updown.Value < 0) minute_updown.Value = 0;
-            if (minute_updown.Value >= 60)
+            if (minute_updown.Value < 60) return;
+
+            if (hour_updown.Value < hour_updown.Maximum)
             {
                 hour_updown.Value++;
                 minute_updown.Value = 0;
+            }
+            else
+            {
+                minute_updown.Value = 59;
             }
         }
 
         private void second_updown_ValueChanged(object sender, EventArgs e)
         {
-            if (second_updown.Value < 0) second_updown.Value = 0;
-            if (second_updown.Value >= 60)
+            if (second_updown.Value < 60) return;
+
+            if (hour_updown.Value < hour_updown.Maximum || minute_updown.Value < 59)
             {
                 minute_updown.Value++;
                 second_updown.Value = 0;
+            }
+            else
+            {
+                second_updown.Value = 59;
             }
         }
 
         private void sleep_button_Click(object sender, EventArgs e)
         {
-            totalSecondsLeft = (int)((hour_updown.Value * 3600) + (minute_updown.Value * 60) + second_updown.Value);
+            int totalSeconds = (int)(hour_updown.Value * 3600 + minute_updown.Value * 60 + second_updown.Value);
 
-            if (totalSecondsLeft <= 0)
+            if (totalSeconds <= 0)
             {
                 MessageBox.Show("Please set a time greater than 0 seconds.", "Invalid Time", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. Remember the original values right before we start counting down
-            originalHours = hour_updown.Value;
-            originalMinutes = minute_updown.Value;
-            originalSeconds = second_updown.Value;
+            originalTotalSeconds = totalSeconds;
+            shutdownAtUtc = DateTime.UtcNow.AddSeconds(totalSeconds);
 
             ToggleInputs(false);
             countdownTimer.Start();
@@ -124,26 +151,35 @@ namespace Sleeptimer_C_
             if (countdownTimer.Enabled)
             {
                 countdownTimer.Stop();
-                RunShutdownCommand("/a");
-
-                // 3. Restore the original inputs back to the UI
-                hour_updown.Value = originalHours;
-                minute_updown.Value = originalMinutes;
-                second_updown.Value = originalSeconds;
-
+                ShowTime(originalTotalSeconds);
                 ToggleInputs(true);
                 MessageBox.Show("Countdown has been aborted and time has been restored.", "Shutdown Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else
+            else if (windowsShutdownPending)
             {
-                // 4. If no timer is active, just reset everything back to clean 00:00:00 zeros
-                hour_updown.Value = 0;
-                minute_updown.Value = 0;
-                second_updown.Value = 0;
+                windowsShutdownPending = false;
+                bool aborted = RunShutdownCommand("/a");
+                ShowTime(originalTotalSeconds);
+                ToggleInputs(true);
 
-                RunShutdownCommand("/a");
-                MessageBox.Show("Timer cleared and any Windows native shutdown has been aborted.", "Shutdown", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (aborted)
+                    MessageBox.Show("The shutdown has been cancelled and time has been restored.", "Shutdown Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("The shutdown could not be cancelled. Try running 'shutdown /a'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!countdownTimer.Enabled || e.CloseReason != CloseReason.UserClosing)
+                return;
+
+            DialogResult result = MessageBox.Show(
+                "A countdown is running. Closing the app cancels it and the PC will NOT shut down.\n\nClose anyway?",
+                "Countdown Running", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (result == DialogResult.No)
+                e.Cancel = true;
         }
 
         private void ToggleInputs(bool enabled)
@@ -152,6 +188,7 @@ namespace Sleeptimer_C_
             minute_updown.Enabled = enabled;
             second_updown.Enabled = enabled;
             sleep_button.Enabled = enabled;
+            abort_button.Enabled = !enabled;
         }
     }
 }
