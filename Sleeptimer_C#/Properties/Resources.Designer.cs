@@ -59,5 +59,194 @@ namespace Sleeptimer_C_.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sleeptimer.
+        /// </summary>
+        internal static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starts the local countdown to shut down this PC.
+        /// </summary>
+        internal static string SleepButtonTooltip {
+            get {
+                return ResourceManager.GetString("SleepButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel the active countdown and reset the timer.
+        /// </summary>
+        internal static string AbortButtonTooltip {
+            get {
+                return ResourceManager.GetString("AbortButtonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        internal static string TrayOpen {
+            get {
+                return ResourceManager.GetString("TrayOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abort Sleep.
+        /// </summary>
+        internal static string TrayAbortSleep {
+            get {
+                return ResourceManager.GetString("TrayAbortSleep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        internal static string TrayExit {
+            get {
+                return ResourceManager.GetString("TrayExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sleeptimer - {0} until shutdown.
+        /// </summary>
+        internal static string TrayTimeLeft {
+            get {
+                return ResourceManager.GetString("TrayTimeLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sleeptimer - shutting down.
+        /// </summary>
+        internal static string TrayShuttingDown {
+            get {
+                return ResourceManager.GetString("TrayShuttingDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sleeptimer: this PC will shut down in {0} seconds..
+        /// </summary>
+        internal static string ShutdownNotice {
+            get {
+                return ResourceManager.GetString("ShutdownNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string ErrorTitle {
+            get {
+                return ResourceManager.GetString("ErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not run the shutdown command:.
+        /// </summary>
+        internal static string RunShutdownErrorText {
+            get {
+                return ResourceManager.GetString("RunShutdownErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shutdown Failed.
+        /// </summary>
+        internal static string ShutdownFailedTitle {
+            get {
+                return ResourceManager.GetString("ShutdownFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The shutdown could not be started..
+        /// </summary>
+        internal static string ShutdownFailedText {
+            get {
+                return ResourceManager.GetString("ShutdownFailedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Time.
+        /// </summary>
+        internal static string InvalidTimeTitle {
+            get {
+                return ResourceManager.GetString("InvalidTimeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please set a time greater than 0 seconds..
+        /// </summary>
+        internal static string InvalidTimeText {
+            get {
+                return ResourceManager.GetString("InvalidTimeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shutdown Cancelled.
+        /// </summary>
+        internal static string ShutdownCancelledTitle {
+            get {
+                return ResourceManager.GetString("ShutdownCancelledTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Countdown has been aborted and time has been restored..
+        /// </summary>
+        internal static string CountdownAbortedText {
+            get {
+                return ResourceManager.GetString("CountdownAbortedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The shutdown has been cancelled and time has been restored..
+        /// </summary>
+        internal static string ShutdownCancelledText {
+            get {
+                return ResourceManager.GetString("ShutdownCancelledText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The shutdown could not be cancelled. Try running 'shutdown /a'..
+        /// </summary>
+        internal static string CancelFailedText {
+            get {
+                return ResourceManager.GetString("CancelFailedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Countdown Running.
+        /// </summary>
+        internal static string CountdownRunningTitle {
+            get {
+                return ResourceManager.GetString("CountdownRunningTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A countdown is running. Closing the app cancels it and the PC will NOT shut down..
+        /// </summary>
+        internal static string CloseWarningText {
+            get {
+                return ResourceManager.GetString("CloseWarningText", resourceCulture);
+            }
+        }
     }
 }

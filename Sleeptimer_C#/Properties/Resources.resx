@@ -114,4 +114,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppName" xml:space="preserve">
+    <value>Sleeptimer</value>
+  </data>
+  <data name="SleepButtonTooltip" xml:space="preserve">
+    <value>Starts the local countdown to shut down this PC</value>
+  </data>
+  <data name="AbortButtonTooltip" xml:space="preserve">
+    <value>Cancel the active countdown and reset the timer</value>
+  </data>
+  <data name="TrayOpen" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="TrayAbortSleep" xml:space="preserve">
+    <value>Abort Sleep</value>
+  </data>
+  <data name="TrayExit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="TrayTimeLeft" xml:space="preserve">
+    <value>Sleeptimer - {0} until shutdown</value>
+  </data>
+  <data name="TrayShuttingDown" xml:space="preserve">
+    <value>Sleeptimer - shutting down</value>
+  </data>
+  <data name="ShutdownNotice" xml:space="preserve">
+    <value>Sleeptimer: this PC will shut down in {0} seconds.</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="RunShutdownErrorText" xml:space="preserve">
+    <value>Could not run the shutdown command:
+{0}</value>
+  </data>
+  <data name="ShutdownFailedTitle" xml:space="preserve">
+    <value>Shutdown Failed</value>
+  </data>
+  <data name="ShutdownFailedText" xml:space="preserve">
+    <value>The shutdown could not be started.</value>
+  </data>
+  <data name="InvalidTimeTitle" xml:space="preserve">
+    <value>Invalid Time</value>
+  </data>
+  <data name="InvalidTimeText" xml:space="preserve">
+    <value>Please set a time greater than 0 seconds.</value>
+  </data>
+  <data name="ShutdownCancelledTitle" xml:space="preserve">
+    <value>Shutdown Cancelled</value>
+  </data>
+  <data name="CountdownAbortedText" xml:space="preserve">
+    <value>Countdown has been aborted and time has been restored.</value>
+  </data>
+  <data name="ShutdownCancelledText" xml:space="preserve">
+    <value>The shutdown has been cancelled and time has been restored.</value>
+  </data>
+  <data name="CancelFailedText" xml:space="preserve">
+    <value>The shutdown could not be cancelled. Try running 'shutdown /a'.</value>
+  </data>
+  <data name="CountdownRunningTitle" xml:space="preserve">
+    <value>Countdown Running</value>
+  </data>
+  <data name="CloseWarningText" xml:space="preserve">
+    <value>A countdown is running. Closing the app cancels it and the PC will NOT shut down.
+
+Close anyway?</value>
+  </data>
 </root>
