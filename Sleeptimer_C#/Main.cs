@@ -37,8 +37,49 @@ namespace Sleeptimer_C_
             countdownTimer.Interval = 250;
             countdownTimer.Tick += CountdownTimer_Tick;
 
+            trayMenu = new ContextMenuStrip(components);
+            trayMenu.Items.Add("Open", null, (s, e) => RestoreFromTray());
+            trayAbortItem = trayMenu.Items.Add("Abort Sleep", null, (s, e) => abort_button.PerformClick());
+            trayAbortItem.Enabled = false;
+            trayMenu.Items.Add(new ToolStripSeparator());
+            trayMenu.Items.Add("Exit", null, (s, e) => { RestoreFromTray(); Close(); });
+
+            trayIcon = new NotifyIcon(components);
+            trayIcon.Icon = Icon;
+            trayIcon.Text = "Sleeptimer";
+            trayIcon.ContextMenuStrip = trayMenu;
+            trayIcon.MouseClick += (s, e) => { if (e.Button == MouseButtons.Left) RestoreFromTray(); };
+
+            Resize += Main_Resize;
             FormClosing += Main_FormClosing;
             abort_button.Enabled = false;
+        }
+
+        private readonly NotifyIcon trayIcon;
+        private readonly ContextMenuStrip trayMenu;
+        private readonly ToolStripItem trayAbortItem;
+
+        // Minimizing hides the window and shows the tray icon instead.
+        private void Main_Resize(object sender, EventArgs e)
+        {
+            if (WindowState != FormWindowState.Minimized) return;
+
+            Hide();
+            trayIcon.Visible = true;
+        }
+
+        private void RestoreFromTray()
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+            Activate();
+            trayIcon.Visible = false;
+        }
+
+        // Tray tooltips are limited to 63 characters.
+        private void SetTrayText(string text)
+        {
+            trayIcon.Text = text.Length > 63 ? text.Substring(0, 63) : text;
         }
 
         private bool RunShutdownCommand(string args)
@@ -71,7 +112,9 @@ namespace Sleeptimer_C_
 
             if (remaining > TimeSpan.Zero)
             {
-                ShowTime((int)Math.Ceiling(remaining.TotalSeconds));
+                int secondsLeft = (int)Math.Ceiling(remaining.TotalSeconds);
+                ShowTime(secondsLeft);
+                SetTrayText("Sleeptimer - " + FormatTime(secondsLeft) + " until shutdown");
                 return;
             }
 
@@ -82,6 +125,7 @@ namespace Sleeptimer_C_
             if (RunShutdownCommand("/s /t " + ShutdownGraceSeconds + " /c \"" + message + "\""))
             {
                 windowsShutdownPending = true;
+                SetTrayText("Sleeptimer - shutting down");
             }
             else
             {
@@ -97,6 +141,12 @@ namespace Sleeptimer_C_
             hour_updown.Value = (int)time.TotalHours;
             minute_updown.Value = time.Minutes;
             second_updown.Value = time.Seconds;
+        }
+
+        private static string FormatTime(int totalSeconds)
+        {
+            TimeSpan time = TimeSpan.FromSeconds(totalSeconds);
+            return string.Format("{0:00}:{1:00}:{2:00}", (int)time.TotalHours, time.Minutes, time.Seconds);
         }
 
         private void minute_updown_ValueChanged(object sender, EventArgs e)
@@ -189,6 +239,10 @@ namespace Sleeptimer_C_
             second_updown.Enabled = enabled;
             sleep_button.Enabled = enabled;
             abort_button.Enabled = !enabled;
+            trayAbortItem.Enabled = !enabled;
+
+            if (enabled)
+                SetTrayText("Sleeptimer");
         }
     }
 }

@@ -9,6 +9,7 @@ A small Windows desktop app that shuts down your PC after a set amount of time. 
 - A 30-second Windows shutdown warning when the countdown ends, so you can still save your work or cancel.
 - **Abort Sleep** cancels the countdown (or the 30-second warning) and restores the time you entered.
 - Warns you if you try to close the app while a countdown is running.
+- Minimizes to the system tray, with the time left shown when you hover over the icon.
 
 ## Requirements
 
@@ -27,6 +28,13 @@ To cancel, click **Abort Sleep** at any time during the countdown or the 30-seco
 ```
 shutdown /a
 ```
+
+### System tray
+
+Minimizing the window hides it from the taskbar and puts an icon in the system tray. Hover over the icon to see the time left.
+
+- **Left-click** the icon to bring the window back.
+- **Right-click** it for **Open**, **Abort Sleep** and **Exit**.
 
 > **Note:** The countdown runs inside the app. If you close the app before the countdown ends, the PC will **not** shut down.
 
