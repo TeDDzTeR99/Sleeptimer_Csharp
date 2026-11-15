@@ -10,17 +10,17 @@ namespace Sleeptimer_C_
         // Seconds Windows waits (showing its own shutdown notice) before shutting down.
         private const int ShutdownGraceSeconds = 30;
 
-        private readonly Timer countdownTimer;
+        private readonly Timer _countdownTimer;
 
         // Wall-clock moment the countdown ends; compared on every tick so the
         // countdown can't drift or stall when ticks are late or the PC sleeps.
-        private DateTime shutdownAtUtc;
+        private DateTime _shutdownAtUtc;
 
         // Time the user entered, restored when the countdown is aborted.
-        private int originalTotalSeconds;
+        private int _originalTotalSeconds;
 
         // True after the countdown ended and Windows has a shutdown scheduled.
-        private bool windowsShutdownPending;
+        private bool _windowsShutdownPending;
 
         public Main()
         {
@@ -33,31 +33,31 @@ namespace Sleeptimer_C_
             toolTip.SetToolTip(sleep_button, "Starts the local countdown to shut down this PC");
             toolTip.SetToolTip(abort_button, "Cancel the active countdown and reset the timer");
 
-            countdownTimer = new Timer(components);
-            countdownTimer.Interval = 250;
-            countdownTimer.Tick += CountdownTimer_Tick;
+            _countdownTimer = new Timer(components);
+            _countdownTimer.Interval = 250;
+            _countdownTimer.Tick += CountdownTimer_Tick;
 
-            trayMenu = new ContextMenuStrip(components);
-            trayMenu.Items.Add("Open", null, (s, e) => RestoreFromTray());
-            trayAbortItem = trayMenu.Items.Add("Abort Sleep", null, (s, e) => abort_button.PerformClick());
-            trayAbortItem.Enabled = false;
-            trayMenu.Items.Add(new ToolStripSeparator());
-            trayMenu.Items.Add("Exit", null, (s, e) => { RestoreFromTray(); Close(); });
+            _trayMenu = new ContextMenuStrip(components);
+            _trayMenu.Items.Add("Open", null, (s, e) => RestoreFromTray());
+            _trayAbortItem = _trayMenu.Items.Add("Abort Sleep", null, (s, e) => abort_button.PerformClick());
+            _trayAbortItem.Enabled = false;
+            _trayMenu.Items.Add(new ToolStripSeparator());
+            _trayMenu.Items.Add("Exit", null, (s, e) => { RestoreFromTray(); Close(); });
 
-            trayIcon = new NotifyIcon(components);
-            trayIcon.Icon = Icon;
-            trayIcon.Text = "Sleeptimer";
-            trayIcon.ContextMenuStrip = trayMenu;
-            trayIcon.MouseClick += (s, e) => { if (e.Button == MouseButtons.Left) RestoreFromTray(); };
+            _trayIcon = new NotifyIcon(components);
+            _trayIcon.Icon = Icon;
+            _trayIcon.Text = "Sleeptimer";
+            _trayIcon.ContextMenuStrip = _trayMenu;
+            _trayIcon.MouseClick += (s, e) => { if (e.Button == MouseButtons.Left) RestoreFromTray(); };
 
             Resize += Main_Resize;
             FormClosing += Main_FormClosing;
             abort_button.Enabled = false;
         }
 
-        private readonly NotifyIcon trayIcon;
-        private readonly ContextMenuStrip trayMenu;
-        private readonly ToolStripItem trayAbortItem;
+        private readonly NotifyIcon _trayIcon;
+        private readonly ContextMenuStrip _trayMenu;
+        private readonly ToolStripItem _trayAbortItem;
 
         // Minimizing hides the window and shows the tray icon instead.
         private void Main_Resize(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace Sleeptimer_C_
             if (WindowState != FormWindowState.Minimized) return;
 
             Hide();
-            trayIcon.Visible = true;
+            _trayIcon.Visible = true;
         }
 
         private void RestoreFromTray()
@@ -73,13 +73,13 @@ namespace Sleeptimer_C_
             Show();
             WindowState = FormWindowState.Normal;
             Activate();
-            trayIcon.Visible = false;
+            _trayIcon.Visible = false;
         }
 
         // Tray tooltips are limited to 63 characters.
         private void SetTrayText(string text)
         {
-            trayIcon.Text = text.Length > 63 ? text.Substring(0, 63) : text;
+            _trayIcon.Text = text.Length > 63 ? text.Substring(0, 63) : text;
         }
 
         private bool RunShutdownCommand(string args)
@@ -108,7 +108,7 @@ namespace Sleeptimer_C_
 
         private void CountdownTimer_Tick(object sender, EventArgs e)
         {
-            TimeSpan remaining = shutdownAtUtc - DateTime.UtcNow;
+            TimeSpan remaining = _shutdownAtUtc - DateTime.UtcNow;
 
             if (remaining > TimeSpan.Zero)
             {
@@ -118,19 +118,19 @@ namespace Sleeptimer_C_
                 return;
             }
 
-            countdownTimer.Stop();
+            _countdownTimer.Stop();
             ShowTime(0);
 
             string message = "Sleeptimer: this PC will shut down in " + ShutdownGraceSeconds + " seconds.";
             if (RunShutdownCommand("/s /t " + ShutdownGraceSeconds + " /c \"" + message + "\""))
             {
-                windowsShutdownPending = true;
+                _windowsShutdownPending = true;
                 SetTrayText("Sleeptimer - shutting down");
             }
             else
             {
                 MessageBox.Show("The shutdown could not be started.", "Shutdown Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ShowTime(originalTotalSeconds);
+                ShowTime(_originalTotalSeconds);
                 ToggleInputs(true);
             }
         }
@@ -189,27 +189,27 @@ namespace Sleeptimer_C_
                 return;
             }
 
-            originalTotalSeconds = totalSeconds;
-            shutdownAtUtc = DateTime.UtcNow.AddSeconds(totalSeconds);
+            _originalTotalSeconds = totalSeconds;
+            _shutdownAtUtc = DateTime.UtcNow.AddSeconds(totalSeconds);
 
             ToggleInputs(false);
-            countdownTimer.Start();
+            _countdownTimer.Start();
         }
 
         private void abort_button_Click(object sender, EventArgs e)
         {
-            if (countdownTimer.Enabled)
+            if (_countdownTimer.Enabled)
             {
-                countdownTimer.Stop();
-                ShowTime(originalTotalSeconds);
+                _countdownTimer.Stop();
+                ShowTime(_originalTotalSeconds);
                 ToggleInputs(true);
                 MessageBox.Show("Countdown has been aborted and time has been restored.", "Shutdown Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else if (windowsShutdownPending)
+            else if (_windowsShutdownPending)
             {
-                windowsShutdownPending = false;
+                _windowsShutdownPending = false;
                 bool aborted = RunShutdownCommand("/a");
-                ShowTime(originalTotalSeconds);
+                ShowTime(_originalTotalSeconds);
                 ToggleInputs(true);
 
                 if (aborted)
@@ -221,7 +221,7 @@ namespace Sleeptimer_C_
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!countdownTimer.Enabled || e.CloseReason != CloseReason.UserClosing)
+            if (!_countdownTimer.Enabled || e.CloseReason != CloseReason.UserClosing)
                 return;
 
             DialogResult result = MessageBox.Show(
@@ -239,7 +239,7 @@ namespace Sleeptimer_C_
             second_updown.Enabled = enabled;
             sleep_button.Enabled = enabled;
             abort_button.Enabled = !enabled;
-            trayAbortItem.Enabled = !enabled;
+            _trayAbortItem.Enabled = !enabled;
 
             if (enabled)
                 SetTrayText("Sleeptimer");
